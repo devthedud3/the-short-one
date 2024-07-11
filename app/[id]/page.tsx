@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function Page({ params: { id } }: { params: Props }) {
-  const [urlId, setUrlId] = useState("");
   const router = useRouter();
   useEffect(() => {
     async function redirect() {
@@ -19,7 +18,7 @@ export default function Page({ params: { id } }: { params: Props }) {
           },
         });
         const { longUrl } = await response.json();
-        router.replace("https://www.google.com");
+        longUrl && router.replace(`https://${longUrl}`);
       } catch (err) {
         console.log(err);
       }
@@ -27,10 +26,6 @@ export default function Page({ params: { id } }: { params: Props }) {
     redirect();
   }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 text-white">
-      {urlId && (
-        <p>This the ID used to find the target in the database: {id}</p>
-      )}
-    </main>
+    <main className="flex min-h-screen flex-col items-center p-24 text-white"></main>
   );
 }
