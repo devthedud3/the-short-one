@@ -22,8 +22,13 @@ export default function Shortener({}: Props) {
     navigator.clipboard.writeText(e);
     setCopied(true);
   }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const regex = /^(https?:\/\/|www\.)[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+/;
+    console.log(regex.test(longUrl), longUrl);
+    if (!regex.test(longUrl)) return;
+
     try {
       const response = await fetch("/api/create", {
         method: "POST",
