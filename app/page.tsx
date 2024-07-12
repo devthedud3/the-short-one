@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen p-12 lg:m-0 lg:p-48 w-full justify-center">
+    <main className="flex p-12 lg:m-0 lg:p-48 w-full justify-center">
       <Link
-        className="fixed top-4 right-4 cursor-pointer hover:animate-pulse"
+        className="absolute top-4 right-4 cursor-pointer hover:animate-pulse"
         href={`${process.env.PROJECT_LINK}`}
         target="_blank"
       >
@@ -27,7 +27,6 @@ export default function Home() {
         </div>
         <Shortener />
       </div>
-      {/* <div></div> */}
     </main>
   );
 }
