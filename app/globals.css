@@ -6,16 +6,65 @@
   
 }
 
+html{
+  width: 100%;
+}
 
 body {
-  background-image: url('/background.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    color: black;
+    max-width: 1700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+}
+
+.gradient-text {
+  background: linear-gradient(to left, red, blue);
+  background-clip: text;
+  color: transparent;
+}
+
+.shadow {
+  box-shadow: 0px 0px 0px 2px rgba(0,0,0,1), 8px 8px 0px 0px rgba(0,0,0,1);
+}
+
+.loader {
+  position: relative;
+  display: block;
+  height: 50px;
+  width: 50px;
+  transition: all .3s;
+  transition-timing-function: ease-in;
+  animation: spinHourglas 1000ms infinite;
+}
+.loader::after{
+  content: '';
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: 0 0;
+  border-width: 0.26em;
+  border-color: #1f2c3f transparent;
+  border-radius: 50%;
+  border-style: solid;
+}
+@keyframes spinHourglas {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(.55,.055,.675,.19);
+  }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(.215,.61,.355,1);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
