@@ -75,7 +75,7 @@ const Shortener: React.FC<Props> = () => {
         />
         <button
           type="submit"
-          className="transition p-3 border-black border shadow hover:scale-110"
+          className="transition p-3 border-black bg-lime-300 border shadow hover:scale-110"
         >
           Shorten
         </button>
