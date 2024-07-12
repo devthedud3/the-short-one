@@ -33,9 +33,5 @@ export default function Page({ params: { id } }: { params: Props }) {
     }
     redirect();
   }, [id, router]);
-  return (
-    <main className="flex">
-      <Loader />
-    </main>
-  );
+  return <main className="flex"></main>;
 }
