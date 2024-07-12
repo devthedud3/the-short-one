@@ -1,33 +1,44 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { TbClipboard, TbClipboardCheck } from "react-icons/tb";
+import { isValidLink } from "@/lib/utils";
 
 type Props = {};
 
-export default function Shortener({}: Props) {
+const Shortener: React.FC<Props> = () => {
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [copied, setCopied] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  }, [copied]);
+    if (copied || message) {
+      const timer = setTimeout(() => {
+        setCopied(false);
+        setMessage("");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [copied, message]);
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLongUrl(e.target.value);
-  }
+  };
 
-  function handleCopied(e: string) {
-    navigator.clipboard.writeText(e);
+  const handleCopied = (url: string) => {
+    navigator.clipboard.writeText(url);
     setCopied(true);
-  }
+  };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const regex = /^(https?:\/\/|www\.)[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+/;
-    console.log(regex.test(longUrl), longUrl);
-    if (!regex.test(longUrl)) return;
+    setShortUrl("");
+    const newUrl = isValidLink(longUrl);
+    console.log(newUrl);
+    if (!newUrl) {
+      setMessage("Enter a valid link");
+      return;
+    }
 
     try {
       const response = await fetch("/api/create", {
@@ -35,50 +46,59 @@ export default function Shortener({}: Props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ longUrl: longUrl }),
+        body: JSON.stringify({ newUrl }),
       });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const { shortUrl } = await response.json();
-      setShortUrl(shortUrl);
+      const data = await response.json();
+      setShortUrl(data.shortUrl);
+      setLongUrl("");
     } catch (error) {
       console.error("Error:", error);
+      setMessage("Failed to shorten the URL");
     }
-    setLongUrl("");
-  }
+  };
 
   return (
-    <div className="p-2 text-sm ">
-      <form className="space-x-4" onSubmit={handleSubmit}>
+    <div className="p-2 text-sm">
+      <form className="space-x-4 flex border shadow" onSubmit={handleSubmit}>
         <input
           type="text"
           value={longUrl}
           name="longUrl"
           onChange={handleInputChange}
-          className="outline-none p-2 w-64 border"
-          placeholder="Enter link"
+          className="outline-none p-3 w-64 flex-1"
+          placeholder="https://"
         />
         <button
           type="submit"
-          className="transition p-2  bg-pink-300 border-none text-black"
+          className="transition p-3 border-black border shadow hover:scale-110"
         >
-          THE SHORTER ONE
+          Shorten
         </button>
       </form>
+
       {shortUrl && (
-        <div className="mt-2 w-full flex items-center text-sm text-white space-x-4">
-          <p>{shortUrl}</p>
+        <div className="mt-4 w-full flex items-center justify-between text-sm space-x-4">
+          <p className="p-3 flex-1 border-b border-black text-xs">{shortUrl}</p>
           <button
-            className={`border p-3 ${copied && "bg-white text-black"}`}
+            className="transition border-4 hover:border-black p-3 rounded-full"
             onClick={() => handleCopied(shortUrl)}
           >
-            {copied ? "Copied" : "Copy to Clipboard"}
+            {copied ? (
+              <TbClipboardCheck size={15} />
+            ) : (
+              <TbClipboard size={15} />
+            )}
           </button>
         </div>
       )}
+      {message && <p className="p-3 text-sm text-red-600">{message}</p>}
     </div>
   );
-}
+};
+
+export default Shortener;
