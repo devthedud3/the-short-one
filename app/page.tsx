@@ -8,12 +8,12 @@ export default function Home() {
         <p className="border px-5 py-2 text-xs rounded-full font-bold bg-lime-200 text-lime-700 ">
           Simplify your link while increasing your visibility
         </p>
-        <div className="flex flex-col pb-24 text-center">
+        <div className="flex flex-col pb-24 text-center items-center space-y-2">
           <h2 className="text-7xl font-bold text-transparent font-outline-1">
             THE SHORTER ONE
           </h2>
           <p className="text-xs">
-            Enter a URL, make it shorter, and see what we mean.
+            Enter a URL, make it shorter, and watch it grow
           </p>
         </div>
         <Shortener />
