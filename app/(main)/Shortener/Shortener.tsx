@@ -63,7 +63,7 @@ const Shortener: React.FC<Props> = () => {
   };
 
   return (
-    <div className="p-2 text-sm">
+    <div className="p-2 text-sm w-full">
       <form className="space-x-4 flex border shadow" onSubmit={handleSubmit}>
         <input
           type="text"
