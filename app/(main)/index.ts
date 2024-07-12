@@ -1,3 +1,4 @@
+import Loader from "./Loader/Loader";
 import Shortener from "./Shortener/Shortener";
 
-export { Shortener };
+export { Loader, Shortener };
