@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Short One
+
+## Overview
+
+**The Short One** is a simple URL shortener application. It provides a straightforward way to convert long URLs into short, manageable links, making them easier to share and remember. This application focuses solely on the core functionality of URL shortening without any additional features.
+
+## Features
+
+- Shorten long URLs quickly and easily
+- Clean and user-friendly interface
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (>=14.x)
+- npm (>=6.x) or yarn (>=1.x)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/devthedud3/the-short-one.git
+   cd the-short-one
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+   or
+   ```bash
+   yarn install
+   ```
+
+### Running the Application
+
+1. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   or
+
+   ```bash
+   yarn dev
+   ```
+
+2. Open your browser and navigate to `http://localhost:3000`.
+
+### Building for Production
+
+To create a production build of the application, run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+or
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The output will be in the `build` directory.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Enter a long URL into the input field.
+2. Click the "Shorten" button to generate a shortened URL.
+3. The shortened URL will be displayed below the input field.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+If you would like to contribute to this project, please fork the repository and submit a pull request. We welcome any contributions that improve the functionality or design of the application.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License. See the LICENSE file for more details.
