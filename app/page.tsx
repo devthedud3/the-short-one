@@ -14,7 +14,7 @@ export default function Home() {
         <VscGithub size={30} />
       </Link>
       <div className="flex flex-col items-center space-y-10">
-        <p className="border px-5 py-2 text-xs rounded-full font-bold bg-lime-200 text-lime-700 ">
+        <p className="border px-5 py-2 text-xs rounded-full font-bold bg-lime-300 text-lime-700 ">
           Simplify your link while increasing your visibility
         </p>
         <div className="flex flex-col pb-24 text-center items-center space-y-2">

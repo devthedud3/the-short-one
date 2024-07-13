@@ -71,7 +71,7 @@ const Shortener: React.FC<Props> = () => {
           name="longUrl"
           onChange={handleInputChange}
           className="outline-none p-3 w-64 flex-1"
-          placeholder="https://"
+          placeholder="https://example.com"
         />
         <button
           type="submit"
