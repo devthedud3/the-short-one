@@ -6,15 +6,17 @@ export function getPath() {
   return "";
 }
 
-export function isValidLink(e: string) {
-  const newURL = e.replace(/^(www\.|https?:\/\/(www\.)?)/, "");
+export function isValidLink(url: string) {
+  const formattedURL = url.replace(/^(www\.|https?:\/\/(www\.)?)/, "");
   try {
     const re = /^(www\.|https?:\/\/)\S+(\.\w{2,}|\/\S*)$/;
-    const { href, origin } = new URL("http://" + newURL);
+    const { href, origin } = new URL(`http://${formattedURL}/`);
+
     if (re.test(`${origin}/`)) return href;
+
     return "";
-  } catch (e) {
-    console.log("Check isValidLink function", e);
+  } catch (error: any) {
+    console.log("isValidLink:", error?.message);
     return "";
   }
 }

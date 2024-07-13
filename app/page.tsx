@@ -6,6 +6,12 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex p-12 lg:m-0 lg:p-48 w-full justify-center">
+      <p className="absolute top-4 left-4 font-black text-2xl">
+        SHORT
+        <span className="text-lime-500 border-b-1 text-outline-1 text-tr border-black">
+          ER
+        </span>
+      </p>
       <Link
         className="absolute top-4 right-4 cursor-pointer hover:animate-pulse"
         href={`${process.env.PROJECT_LINK}`}

@@ -34,7 +34,7 @@ const Shortener: React.FC<Props> = () => {
     e.preventDefault();
     setShortUrl("");
     const newUrl = isValidLink(longUrl);
-    console.log(newUrl);
+
     if (!newUrl) {
       setMessage("Enter a valid link");
       return;
@@ -53,8 +53,8 @@ const Shortener: React.FC<Props> = () => {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      setShortUrl(data.shortUrl);
+      const { shortUrl } = await response.json();
+      setShortUrl(shortUrl);
       setLongUrl("");
     } catch (error) {
       console.error("Error:", error);
