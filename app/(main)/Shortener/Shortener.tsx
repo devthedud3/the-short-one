@@ -109,7 +109,7 @@ const Shortener: React.FC<Props> = () => {
                 onClick={() => setShowQR(!showQR)}
               >
                 <TbQrcode size={15} />
-                <p>{showQR ? "Hide " : "SHow "}QR</p>
+                <p>{showQR ? "Hide " : "Show "}QR</p>
               </button>
             </div>
           </pre>
