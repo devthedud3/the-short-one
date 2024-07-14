@@ -1,13 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { TbClipboard, TbClipboardCheck } from "react-icons/tb";
+import { TbClipboard, TbClipboardCheck, TbQrcode } from "react-icons/tb";
 import { isValidLink } from "@/lib/utils";
+import QRCode from "qrcode.react";
 
 type Props = {};
 
 const Shortener: React.FC<Props> = () => {
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [showQR, setShowQR] = useState(false);
   const [copied, setCopied] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -83,20 +85,45 @@ const Shortener: React.FC<Props> = () => {
 
       {shortUrl && (
         <div className="mt-4 w-full flex items-center justify-between text-sm space-x-4">
-          <p className="p-3 flex-1 border-b border-black text-xs">{shortUrl}</p>
-          <button
-            className="transition border-4 hover:border-black p-3 rounded-full"
-            onClick={() => handleCopied(shortUrl)}
-          >
-            {copied ? (
-              <TbClipboardCheck size={15} />
-            ) : (
-              <TbClipboard size={15} />
-            )}
-          </button>
+          <pre className="p-4 flex border justify-between w-full bg-black text-lime-300 rounded text-xs">
+            <p>{shortUrl}</p>
+            <div className="flex space-x-4">
+              <button
+                className="transition"
+                onClick={() => handleCopied(shortUrl)}
+              >
+                {copied ? (
+                  <div className="flex space-x-1">
+                    <TbClipboardCheck size={15} />
+                    <p className="text-xs">Copied</p>
+                  </div>
+                ) : (
+                  <div className="flex space-x-1">
+                    <TbClipboard size={15} />
+                    <p className="text-xs">Copy</p>
+                  </div>
+                )}
+              </button>
+              <button
+                className="transition space-x-1 flex"
+                onClick={() => setShowQR(!showQR)}
+              >
+                <TbQrcode size={15} />
+                <p>{showQR ? "Hide " : "SHow "}QR</p>
+              </button>
+            </div>
+          </pre>
         </div>
       )}
       {message && <p className="p-3 text-sm text-red-600">{message}</p>}
+
+      <center
+        className={`absolute left-0 right-0 transition-opacity delay-150 my-4 rounded-full ${
+          showQR ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <QRCode value={shortUrl} size={100} level="H" />
+      </center>
     </div>
   );
 };
