@@ -25,10 +25,10 @@ export default function Home() {
         <p className="border px-5 py-2 text-xs rounded-full font-bold bg-lime-300 text-lime-700 ">
           The Ultimate URL Shortener
         </p>
-        <div className="flex flex-col pb-24 text-center items-center space-y-2">
-          <h2 className="text-7xl font-bold text-transparent font-outline-1">
+        <div className="flex flex-col pb-10 text-center items-center space-y-2">
+          <h1 className="text-7xl font-bold text-transparent font-outline-1">
             THE SHORT ONE
-          </h2>
+          </h1>
           <p className="text-xs">
             Shrink your link, share with friends, and expand your reach!
           </p>
