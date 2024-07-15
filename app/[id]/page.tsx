@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
-import { Loader } from "../(main)";
+import React, { useEffect } from "react";
 
 type Props = {
   id: string;
@@ -13,7 +12,6 @@ export default function Page({ params: { id } }: { params: Props }) {
   useEffect(() => {
     n++;
     if (n > 1) return;
-    console.log("checking:", n);
     async function redirect() {
       try {
         const [linkResponse, updateResponse] = await Promise.all([
@@ -28,10 +26,10 @@ export default function Page({ params: { id } }: { params: Props }) {
 
         longUrl && router.replace(longUrl);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     redirect();
-  }, [id, router]);
-  return <main className="flex"></main>;
+  }, []);
+  return null;
 }
