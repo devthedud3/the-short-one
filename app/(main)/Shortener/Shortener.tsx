@@ -35,6 +35,7 @@ const Shortener: React.FC<Props> = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShortUrl("");
+    setShowQR(false);
     const newUrl = isValidLink(longUrl);
 
     if (!newUrl) {
@@ -117,13 +118,15 @@ const Shortener: React.FC<Props> = () => {
       )}
       {message && <p className="p-3 text-sm text-red-600">{message}</p>}
 
-      <center
-        className={`absolute left-0 right-0 transition-opacity delay-150 my-10 rounded-full ${
-          showQR ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <QRCode value={shortUrl} size={200} level="H" />
-      </center>
+      {shortUrl && showQR && (
+        <center
+          className={`absolute left-0 right-0 transition-opacity delay-150 my-10 rounded-full ${
+            showQR ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <QRCode value={shortUrl} size={200} level="H" />
+        </center>
+      )}
     </div>
   );
 };
