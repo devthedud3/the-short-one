@@ -13,8 +13,9 @@ export function isValidLink(url: string) {
     const u = new URL(`http://${formattedURL}`);
     const { href, origin } = new URL(`http://${formattedURL}`);
 
-    console.log(formattedURL, u);
-    if (re.test(`${origin}/`)) return href.slice(0, -1);
+    console.log(href.replace(/\/?$/, ""));
+
+    if (re.test(`${origin}/`)) return href.replace(/\/?$/, "");
 
     return "";
   } catch (error: any) {
