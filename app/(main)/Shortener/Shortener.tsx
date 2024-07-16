@@ -118,7 +118,7 @@ const Shortener: React.FC<Props> = () => {
       )}
       {message && <p className="p-3 text-sm text-red-600">{message}</p>}
 
-      {shortUrl && showQR && (
+      {shortUrl && (
         <center
           className={`absolute left-0 right-0 transition-opacity delay-150 my-10 rounded-full ${
             showQR ? "opacity-100" : "opacity-0"
