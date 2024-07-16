@@ -12,6 +12,7 @@ const Shortener: React.FC<Props> = () => {
   const [showQR, setShowQR] = useState(false);
   const [copied, setCopied] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (copied || message) {
@@ -43,6 +44,7 @@ const Shortener: React.FC<Props> = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const response = await fetch("/api/create", {
         method: "POST",
@@ -62,6 +64,8 @@ const Shortener: React.FC<Props> = () => {
     } catch (error) {
       console.error("Error:", error);
       setMessage("Failed to shorten the URL");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,6 +87,10 @@ const Shortener: React.FC<Props> = () => {
           Shorten
         </button>
       </form>
+
+      {!shortUrl && loading && (
+        <div className="mt-6 w-full h-12 rounded-lg bg-slate-300 animate-pulse" />
+      )}
 
       {shortUrl && (
         <div className="mt-4 w-full flex items-center justify-between text-sm space-x-4">
@@ -116,7 +124,7 @@ const Shortener: React.FC<Props> = () => {
           </pre>
         </div>
       )}
-      {message && <p className="p-3 text-sm text-red-600">{message}</p>}
+      {message && <p className="mt-4 p-3 text-sm text-red-600">{message}</p>}
 
       {shortUrl && (
         <center
