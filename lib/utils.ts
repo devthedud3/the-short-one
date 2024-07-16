@@ -9,7 +9,7 @@ export function getPath() {
 export function isValidLink(url: string) {
   const formattedURL = url.replace(/^(www\.|https?:\/\/(www\.)?)|(\/)/, "");
   try {
-    const re = /^(www\.|https?:\/\/)\S+(\.\w{2,})/;
+    const re = /^(www\.|https?:\/\/)\S+(\.\w{2,})(\/\S*)?/;
     const u = new URL(`http://${formattedURL}`);
     const { href, origin } = new URL(`http://${formattedURL}`);
 
